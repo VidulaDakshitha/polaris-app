@@ -28,7 +28,7 @@ import { Redirect } from '@shopify/app-bridge/actions';
 
 export function App() {
 
-const host = "onepay-gateway-test.myshopify.com";
+const host = "b25lcGF5LWdhdGV3YXktdGVzdC5teXNob3BpZnkuY29tL2FkbWlu";
   const apiKey = 'e5646cb38c6ddda8cd1458ff19a7bf27';
 const redirectUri = 'https://eantheweb.vercel.app/';
 const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}&scope=read_products,read_content&redirect_uri=${redirectUri}`;
