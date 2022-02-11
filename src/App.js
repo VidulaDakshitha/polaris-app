@@ -30,7 +30,7 @@ export function App() {
 
 const host = "onepay-gateway-test.myshopify.com";
   const apiKey = 'e5646cb38c6ddda8cd1458ff19a7bf27';
-const redirectUri = 'https://polaris-app.vercel.app/';
+const redirectUri = 'https://eantheweb.vercel.app/';
 const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}&scope=read_products,read_content&redirect_uri=${redirectUri}`;
 
 // If the current window is the 'parent', change the URL by setting location.href
@@ -41,7 +41,8 @@ if (window.top == window.self) {
 } else {
   const app = createApp({
     apiKey: apiKey,
-    host: host
+    host: host,
+    forceRedirect: true
   });
 
   Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
