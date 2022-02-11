@@ -30,7 +30,7 @@ export function App() {
 
 const host = "onepay-gateway-test.myshopify.com";
   const apiKey = 'e5646cb38c6ddda8cd1458ff19a7bf27';
-const redirectUri = 'allowed redirect URI from Shopify Partner Dashboard';
+const redirectUri = 'https://polaris-app.vercel.app/';
 const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}&scope=read_products,read_content&redirect_uri=${redirectUri}`;
 
 // If the current window is the 'parent', change the URL by setting location.href
