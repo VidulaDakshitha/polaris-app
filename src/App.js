@@ -33,12 +33,20 @@ const host = "onepay-gateway-test.myshopify.com";
 const redirectUri = 'https://eantheweb.vercel.app/';
 const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}&scope=read_products,read_content&redirect_uri=${redirectUri}`;
 
-// If the current window is the 'parent', change the URL by setting location.href
-if (window.top == window.self) {
-  window.location.assign(permissionUrl);
+// // If the current window is the 'parent', change the URL by setting location.href
+// if (window.top == window.self) {
+//   window.location.assign(permissionUrl);
 
-  // If the current window is the 'child', change the parent's URL with Shopify App Bridge's Redirect action
-} else {
+//   // If the current window is the 'child', change the parent's URL with Shopify App Bridge's Redirect action
+// } else {
+//   const app = createApp({
+//     apiKey: apiKey,
+//     host: host,
+//     forceRedirect: true
+//   });
+
+//   Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
+// }
   const app = createApp({
     apiKey: apiKey,
     host: host,
@@ -46,8 +54,6 @@ if (window.top == window.self) {
   });
 
   Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
-}
-
 
 
 
