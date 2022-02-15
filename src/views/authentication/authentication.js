@@ -26,6 +26,26 @@ class Authentication extends Component {
 
     constructor(props){
         super(props);
+        this.state={
+            app_id:"",
+            app_token:"",
+            hash_salt:"",
+
+        }
+
+    }
+
+
+    onSubmit=(e):void=>{
+        e.preventDefault();
+
+        const values={
+  app_id:this.state.app_id,
+  hash_salt:this.state.hash_salt,
+  hash_token:this.state.hash_token
+}
+
+
 
     }
 
@@ -34,22 +54,25 @@ componentDidMount():void{
     // const values = queryString.parse(window.location.href)
     // const host = values.host
 
-const host = "b25lcGF5LWdhdGV3YXktdGVzdC5teXNob3BpZnkuY29tL2FkbWlu";
-  const apiKey = 'e5646cb38c6ddda8cd1458ff19a7bf27';
-const redirectUri = 'https://eantheweb.vercel.app/';
-const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}&scope=read_products,read_content&redirect_uri=${redirectUri}`;
+// const host = "b25lcGF5LWdhdGV3YXktdGVzdC5teXNob3BpZnkuY29tL2FkbWlu";
+//   const apiKey = 'e5646cb38c6ddda8cd1458ff19a7bf27';
+// const redirectUri = 'https://eantheweb.vercel.app/';
+// const permissionUrl = `https://${host}/admin/oauth/authorize?client_id=${apiKey}&scope=read_products,read_content,write_payment_gateways,write_payment_sessions&redirect_uri=${redirectUri}`;
 
-  const app = createApp({
-    apiKey: apiKey,
-    host: host,
-    forceRedirect: true
-  });
+//   const app = createApp({
+//     apiKey: apiKey,
+//     host: host,
+//     forceRedirect: true
+//   });
 
-  Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
+//   Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
 }
 
 
-handleFirstChange():void{
+handleFirstChange(e):void{
+   this.setState({
+      [e.target.name]:e.target.value
+    })
 
 }
 
@@ -104,29 +127,29 @@ handleFirstChange():void{
         >
           <Card sectioned>
             <FormLayout>
-        
+                <form onSubmit={this.onSubmit}>
                 <TextField
-                  value={"first"}
+                  value={this.state.app_id}
                   label="App ID"
                   placeholder="Enter App ID"
                   onChange={this.handleFirstChange()}
-                 
+                 name="app_id"
                 />
            
                  <TextField
-                  value={"last"}
+                  value={this.state.hash_salt}
                   label="Hash Salt"
                   placeholder="Enter Hash Salt"
                   onChange={this.handleFirstChange()}
-                  
+                  name="hash_salt"
                 />
 
               <TextField
-                value={"email"}
+                value={this.state.hash_token}
                 label="Access Token"
                 placeholder="Enter Access Token"
                 onChange={this.handleFirstChange()}
-               
+               name="hash_token"
               />
 
               {/* <ChoiceList
@@ -137,6 +160,7 @@ handleFirstChange():void{
               /> */}
 
               <Button primary>Submit</Button>
+              </form>
             </FormLayout>
           </Card>
         </Layout.AnnotatedSection>
